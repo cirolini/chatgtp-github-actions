@@ -151,7 +151,10 @@ def analyze_commit_files(github_client, openai_client, pr_id, commit, language, 
     review = openai_client.generate_response(create_review_prompt(combined_content,
                                                                   language,
                                                                   custom_prompt))
-    github_client.post_comment(pr_id, f"ChatGPT's code review:\n {review}")
+    if review.strip().lower() == "no comments":
+        logging.info("No comments to post for PR ID: %s", pr_id)
+    else:
+        github_client.post_comment(pr_id, f"ChatGPT's code review:\n {review}")
 
 def analyze_patch(github_client, openai_client, pr_id, patch_content, language, custom_prompt):
     """
@@ -236,6 +239,7 @@ def create_review_prompt(content, language, custom_prompt=None):
         f"   # Use this:\n"
         f"   cursor.execute('SELECT * FROM users WHERE username = %s', (username,))\n"
         f"   ```"
+        f"If there is nothing to comment on, disregard previous formatting instructions, and reply with the exact phrase 'no comments'."
     )
 
 
