@@ -46,6 +46,7 @@ jobs:
           mode: files # files or patch
           language: en # optional, default is 'en'
           custom_prompt: "" # optional
+          force_comment: false # optional, default is false
 ```
 
 In the above workflow, the pull_request event triggers the workflow whenever a pull request is opened or synchronized. The workflow runs on the ubuntu-latest runner and uses the cirolini/chatgpt-github-actions@v1 action.
@@ -84,6 +85,11 @@ The openai_api_key is passed from the secrets context, and the github_token is a
 - **Description**: Custom instructions for the AI to follow when generating the review.
 - **Default**: `""` (empty)
 - **Usage**: Provide specific guidelines or focus areas for the AI's code review.
+
+### `force_comment`
+- **Description**: Whether to force the AI to comment even if it finds no issues
+- **Default**: `false`
+- **Usage**: Set to `true` to force the AI to comment even if it finds no issues with the code. It will reply "no comments".
 
 
 ## How it works
