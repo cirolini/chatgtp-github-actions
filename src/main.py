@@ -64,7 +64,8 @@ def get_env_vars():
         'OPENAI_MAX_TOKENS': (int, True),
         'MODE': (str, True),
         'LANGUAGE': (str, True),
-        'CUSTOM_PROMPT': (str, False)
+        'CUSTOM_PROMPT': (str, False),
+        'FORCE_COMMENT': (bool, False)  # New flag
     }
 
     env_vars = {}
@@ -148,10 +149,12 @@ def analyze_commit_files(github_client, openai_client, pr_id, commit, language, 
         content = github_client.get_file_content(commit.sha, file.filename)
         combined_content += f"\n### File: {file.filename}\n```{content}```\n"
 
+    env_vars = get_env_vars()
+
     review = openai_client.generate_response(create_review_prompt(combined_content,
                                                                   language,
                                                                   custom_prompt))
-    if review.strip().lower() == "no comments":
+    if review.strip().lower() == "no comments" and not env_vars['FORCE_COMMENT']:
         logging.info("No comments to post for PR ID: %s", pr_id)
     else:
         github_client.post_comment(pr_id, f"ChatGPT's code review:\n {review}")
