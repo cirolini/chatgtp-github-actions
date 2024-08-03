@@ -243,7 +243,7 @@ def create_review_prompt(content, language, custom_prompt=None):
         f"   # Use this:\n"
         f"   cursor.execute('SELECT * FROM users WHERE username = %s', (username,))\n"
         f"   ```"
-        f"If the code contains no serious issues, disregard previous formatting instructions, and reply with the exact phrase 'ignoreResponse'."
+        f"If the code contains no serious and non-speculative issues, disregard previous formatting instructions, and reply with the exact phrase 'ignoreResponse'."
     )
 
 
