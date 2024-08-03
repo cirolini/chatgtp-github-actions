@@ -213,12 +213,14 @@ def create_review_prompt(content, language, custom_prompt=None):
             f"Write this code review in the following {language}:\n\n"
         )
     return (
-        f"Please review the following code for clarity, efficiency, and functionality."
-        f"Identify any areas for improvement, suggest specific optimizations, and note potential bugs or security vulnerabilities. "
+        f"Please review the following code for clarity, efficiency, and functionality. "
+        f"Identify areas for improvement, suggest specific optimizations, and note bugs or security vulnerabilities. "
         f"Additionally, provide suggestions for how to address the identified issues, with a focus on maintainability and scalability. "
+        f"Avoid speculative comments, notes about best-practice, or reminders. Only comment on issues that are actually present."
         f"Include examples of code where relevant. Use markdown formatting for your response:\n\n"
         f"Write this code review in the following {language}:\n\n"
         f"Do not write the code or guidelines in the review. Only write the review itself.\n\n"
+        f"Skip review guideline sections where issues are not found. Only issues in need of fixing need to be included in this review."
         f"### Code\n```{content}```\n\n"
         f"### Review Guidelines\n"
         f"1. **Clarity**: Is the code easy to understand?\n"
