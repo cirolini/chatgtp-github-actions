@@ -213,7 +213,7 @@ def create_review_prompt(content, language, custom_prompt=None):
             f"Write this code review in the following {language}:\n\n"
         )
     return (
-        f"Please review the following code for clarity, efficiency, and adherence to best practices."
+        f"Please review the following code for clarity, efficiency, and functionality."
         f"Identify any areas for improvement, suggest specific optimizations, and note potential bugs or security vulnerabilities. "
         f"Additionally, provide suggestions for how to address the identified issues, with a focus on maintainability and scalability. "
         f"Include examples of code where relevant. Use markdown formatting for your response:\n\n"
@@ -243,7 +243,7 @@ def create_review_prompt(content, language, custom_prompt=None):
         f"   # Use this:\n"
         f"   cursor.execute('SELECT * FROM users WHERE username = %s', (username,))\n"
         f"   ```"
-        f"If there is nothing to comment on, disregard previous formatting instructions, and reply with the exact phrase 'no comments'."
+        f"If there is nothing to comment on, disregard previous formatting instructions, and reply with the exact phrase 'ignoreResponse'."
     )
 
 
