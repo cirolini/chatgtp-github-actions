@@ -158,6 +158,7 @@ def analyze_commit_files(github_client, openai_client, pr_id, commit, language, 
         logging.info("No comments to post for PR ID: %s", pr_id)
     else:
         github_client.post_comment(pr_id, f"ChatGPT's code review:\n {review}")
+        logging.info(f"ChatGPT's code review:\n {review}")
 
 def analyze_patch(github_client, openai_client, pr_id, patch_content, language, custom_prompt):
     """
