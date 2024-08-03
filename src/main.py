@@ -213,7 +213,7 @@ def create_review_prompt(content, language, custom_prompt=None):
             f"Write this code review in the following {language}:\n\n"
         )
     return (
-        f"Please review the following code for bugs, efficiency, and functionality. "
+        f"Please review the following code for bugs, efficiency, and functionality. Remember that your goal is not to invent or speculate about issues, it is to find serious issues that definitely exist. Only comment if this is the case, otherwise reply with only 'ignoreResponse'. This will indicate you found no definite issues."
         f"Identify areas for improvement, suggest specific optimizations, and note bugs or security vulnerabilities (if any are present)."
         f"If issues are found, provide suggestions for how to address only those identified issues, with a focus on maintainability and scalability. "
         f"When providing suggestions, do not guess. Only make a specific suggestion if you are able to find a documentation source proving it is correct. "
