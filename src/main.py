@@ -154,7 +154,7 @@ def analyze_commit_files(github_client, openai_client, pr_id, commit, language, 
     review = openai_client.generate_response(create_review_prompt(combined_content,
                                                                   language,
                                                                   custom_prompt))
-    if review.strip().lower() == "no comments" and not env_vars['FORCE_COMMENT']:
+    if "no comments" in review.strip().lower() and not env_vars['FORCE_COMMENT']:
         logging.info("No comments to post for PR ID: %s", pr_id)
     else:
         github_client.post_comment(pr_id, f"ChatGPT's code review:\n {review}")
