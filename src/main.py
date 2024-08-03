@@ -216,6 +216,7 @@ def create_review_prompt(content, language, custom_prompt=None):
         f"Please review the following code for bugs, efficiency, and functionality. "
         f"Identify areas for improvement, suggest specific optimizations, and note bugs or security vulnerabilities (if any are present)."
         f"If issues are found, provide suggestions for how to address only those identified issues, with a focus on maintainability and scalability. "
+        f"When providing suggestions, do not guess. Only make a specific suggestion if you are able to find a documentation source proving it is correct. "
         f"Do not make speculative comments such as 'X may not be necessary' or 'Y may cause issues', notes about best-practice, or reminders. Only comment on definite issues or problems present in the code. Your role is to check for serious issues, not provide style guideance or similar advice"
         f"Include examples of code where relevant. Use markdown formatting for your response:\n\n"
         f"Write this code review in the following {language}:\n\n"
