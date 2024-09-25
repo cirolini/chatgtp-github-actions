@@ -17,4 +17,4 @@ COPY . .
 ENV PYTHONPATH="${PYTHONPATH}:/app/src"
 
 # Set the command to execute the main Python script
-CMD ["python", "src/main.py"]
+CMD ["python", "/app/src/main.py"]
